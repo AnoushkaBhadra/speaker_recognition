@@ -4,7 +4,7 @@
 
 1. Install dependencies:
    ```bash
-   pip install flask flask-cors librosa numpy soundfile werkzeug pydub
+   pip install flask flask-cors librosa numpy soundfile werkzeug pydub resemblyzer
    ```
 
 2. Run server:
