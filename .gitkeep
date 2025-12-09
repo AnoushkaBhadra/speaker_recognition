@@ -1,0 +1,4 @@
+touch uploads/enrollments/.gitkeep
+touch uploads/predictions/.gitkeep
+touch embeddings/.gitkeep
+touch logs/.gitkeep

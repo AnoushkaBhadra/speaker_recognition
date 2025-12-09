@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+*.egg
+
+# Server files
+uploads/*.wav
+uploads/enrollments/
+uploads/predictions/
+embeddings/*.npy
+embeddings/registry.json
+logs/*.log
+temp/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Audio test files
+*.webm
+*.ogg
+*.m4a
+!audio_clips/
+
+# Keep structure but ignore content
+uploads/enrollments/*
+!uploads/enrollments/.gitkeep
+embeddings/*
+!embeddings/.gitkeep
