@@ -45,11 +45,27 @@ def test_prediction(audio_path):
                 
                 print("\nPrediction successful!")
                 print("\nResults:")
-                print(f"  Predicted: {data['prediction']}")
+                # Front-end friendly displays (preferred)
+                if 'prediction_display' in data:
+                    print(f"  {data['prediction_display']}")
+                else:
+                    print(f"  Predicted: {data['prediction']}")
+
                 print(f"  Confidence: {data['confidence']:.3f}")
                 print(f"  Threshold: {data['threshold']}")
                 print(f"  Message: {data['message']}")
-                
+
+                # Top matches (structured)
+                if 'top_matches' in data and data['top_matches']:
+                    print("\nTop matches:")
+                    for m in data['top_matches']:
+                        print(f"  - {m['username']:15s}: {m['similarity']:.3f}")
+
+                # Front-end friendly matches string
+                if 'matches_display' in data:
+                    print(f"\n  {data['matches_display']}")
+
+                # Fallback: show all similarities if provided
                 if 'all_similarities' in data:
                     print("\nSimilarities with all enrolled users:")
                     for user, sim in data['all_similarities'].items():

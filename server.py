@@ -372,6 +372,16 @@ def predict_speaker():
         else:
             prediction = "Unknown"
             message = "No match found above threshold"
+
+        # Prepare top-N matches (top 5)
+        sorted_matches = sorted(similarities.items(), key=lambda kv: kv[1], reverse=True)
+        top_n = sorted_matches[:5]
+        top_matches = [{'username': u, 'similarity': float(s)} for u, s in top_n]
+        # Build a front-end friendly string using structured top_matches entries
+        matches_display = "Matches: [" + ", ".join(
+            (f"{m['username']} ({m['similarity']:.3f})" for m in top_matches)
+        ) + "]"
+        prediction_display = f"Predicted: {prediction}"
         
         logging.info(f"Prediction: {prediction} (confidence: {best_similarity:.3f})")
         
@@ -384,9 +394,12 @@ def predict_speaker():
         return jsonify({
             'status': 'success',
             'prediction': prediction,
+            'prediction_display': prediction_display,
             'confidence': float(best_similarity),
             'threshold': SIMILARITY_THRESHOLD,
             'all_similarities': similarities,
+            'top_matches': top_matches,
+            'matches_display': matches_display,
             'message': message
         }), 200
         
